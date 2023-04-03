@@ -1,0 +1,143 @@
+<?php 
+
+session_start(); 
+
+?>
+<html>
+<body>
+<div style="background-color:white">
+    <a href="../view/Home page.php"><img src="../view/logo.jpg" height=130 style="float:left;" ></a>
+	 <h3 style="float: right; color: RGB(46,139,87)"><br><br><br><br><a style="color: RGB(46,139,87)" href="../view/agriculturist profile.php"><img src="../view/profile.png" height=130 style="float:left;" ><?php echo $_SESSION["uname"] ; ?></a></h3>
+	 <br><h1 style= "color: cmyk(0,0,0,1);font-size:30px;font-family:'public sans'"> <b>AGRICULTURAL GAIN </b> </h1>
+    <h4 style= "color:RGB(105,105,105) ;font-size:18px;font-family:'public sans'"> A complete solution of farming <br><br></h4>
+  
+
+<div style = "background-color: RGB(46,139,87);" >
+<a href="../view/Home page.php"><h2 style="color:white;font-size:20px;"><u>Home</u></h2></a>
+</div>
+</div>
+<style>
+body {
+  background-image: url('../view/strw.jpg');
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  background-size: cover;
+}
+</style>
+<br><br>
+
+<?php
+//include("F:\XAMP\htdocs\Model\Agriculturist sign up.php");
+// Start the session
+?>
+<br><h1 style="color:White;font-size:60px;text-align: center;">Thanks for joinig us</h1>
+<h3 style="color:White;font-size:20px;text-align: center;">Thank you for creating your account in agricultural gain. Here you can see your detailed information <br>and also can choose what you can do for farmers</h1><br><br>
+<div style="background-color:white">
+<div style = "background-color: RGB(46,139,87);" >
+<h2 style="color:white">Agriculturist's profile:</h2>
+</div>
+<h1><b><?php echo $_SESSION["uname"]; ?></b></h2>
+
+Email: <?php echo  $_SESSION["email"]; ?>
+
+<br>Gender: <?php echo $_SESSION["gender"]; ?>
+
+<br>Expertizes: <?php
+$txt4_2 =$_SESSION["sectors"] ;
+ foreach ($txt4_2 as $expertize){
+   echo $expertize."  ";
+} ?>
+
+<br>Institute: <?php echo $_SESSION["institute"]; ?>
+
+<br>Address: <?php echo $_SESSION["address"] ?>
+
+<br>About: <?php echo $_SESSION["bio"]; ?>
+<br><br>
+</div>
+<?php
+//TXT WRITE PART: 
+$myfile = fopen("../Model/agriculturist.txt", "a") or die("Unable to open file!");
+$txt =$_SESSION["uname"];
+fwrite($myfile, "Username: ");
+fwrite($myfile, $txt);
+fwrite($myfile, " ");
+
+$txt2 =$_SESSION["email"] ;
+fwrite($myfile, "Email: ");
+fwrite($myfile, $txt2);
+fwrite($myfile, " ");
+
+$txt3 =$_SESSION["pass"] ;
+fwrite($myfile, "Password: ");
+fwrite($myfile, $txt3);
+fwrite($myfile, " ");
+
+$txt4 =$_SESSION["gender"] ;
+fwrite($myfile, "Gender: ");
+fwrite($myfile, $txt4);
+fwrite($myfile, " ");
+
+$txt4_1 =$_SESSION["sectors"] ;
+fwrite($myfile, "Expertize: ");
+foreach ($txt4_1 as $expertize){
+	fwrite($myfile, $expertize);
+	fwrite($myfile, " ");
+}
+
+
+
+$txt5 =$_SESSION["institute"] ;
+fwrite($myfile, "Institute: ");
+fwrite($myfile, $txt5);
+fwrite($myfile, " ");
+
+$txt6 =$_SESSION["address"] ;
+fwrite($myfile, "Address: ");
+fwrite($myfile, $txt6);
+fwrite($myfile, " ");
+
+$txt6 =$_SESSION["bio"] ;
+fwrite($myfile, "Bio: ");
+fwrite($myfile, $txt6);
+fwrite($myfile, " "); 
+
+fclose($myfile); 
+
+
+//JSON write part
+$crdata=file_get_contents('../Model/Infor.json');
+    $ar_data=json_decode($crdata,true);
+    $put=array(
+        'user'=>$_SESSION["uname"],
+        'pw'=>$_SESSION["pass"],
+        'email'=>$_SESSION["email"],
+     
+    );
+    $ar_data[]=$put;
+    $final_data=json_encode($ar_data);
+    file_put_contents('../Model/Infor.json',$final_data);
+?>
+<div style="background-color:white">
+<div style = "background-color: RGB(46,139,87);" >
+<h2 style="color:white"><b>What can you do for farmers : </b></h2>
+</div>
+
+
+
+<img src="../view/advice.png" height=45 style="float:left;" ><a href="../Model/farmers list.php"><h2 style="color:RGB(46,139,87);font-size:20px;" ><u>See Farmers asking for advice ></u> </h2></a><br>
+
+
+<img src="../view/FAQ.png" height=45 style="float:left;" ><a href="../Model/faq.php"><h2 style="color:RGB(46,139,87);font-size:20px;"><u>Frequently Asked Questions ></u> </h2></a><br>
+
+
+<img src="../view/contact.png" height=45 style="float:left;" ><a href="../Model/contact.php"><h2 style="color:RGB(46,139,87);font-size:20px;"><u>Contact with other Agriculturists ></u> </h2></a><br>
+
+
+</div>
+<br><br>
+<h1 style="color:White;font-size:11px;text-align: center;">2022 © <b> AGRICULTURAL GAIN</b> UNDER REGISTRATION<br>
+DEVELOPED BY: <b> MD. SHALIM SADMAN</b> ID: 20-42303-1, WEBTECH[A], AMERICAN INTERNATIONAL UNIVERSITY BANGLADESH </h1>
+<br>
+</body>
+</html>

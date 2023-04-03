@@ -1,0 +1,72 @@
+body {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  background-image: linear-gradient(rgb(103 78 78 / 45%), rgb(24 13 13 / 56%)),
+    url(Buyer.jpg);
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+.container {
+  background-color: rgb(0 0 0 / 34%);
+  height: 500px;
+  width: 800px;
+  display: flex;
+  justify-content: space-between;
+  box-shadow: rgb(238 246 255 / 40%) 0px 0px 0px 7px,
+    rgb(6 24 44 / 65%) 0px 4px 6px -1px, rgb(255 255 255 / 8%) 0px 1px 0px inset;
+}
+.login-details {
+  padding: 30px;
+  color: #fff;
+}
+.header h2 {
+  font-size: 40px;
+}
+form {
+  margin-top: 40px;
+}
+label {
+  font-size: 20px;
+}
+span {
+  color: red;
+}
+input {
+  width: 80%;
+  padding: 8px;
+  border-radius: 4px;
+  font-size: 13px;
+  margin: 12px 0;
+  border-color: transparent;
+}
+input:focus {
+  outline: none;
+}
+i {
+  margin: 0 4px;
+}
+i.fa-circle-check {
+}
+i.fa-circle-exclamation {
+}
+button {
+  display: inline-block;
+  padding: 8px 20px;
+  margin-top: 16px;
+  font-size: 19px;
+  font-weight: 700;
+  border: 3px solid transparent;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: all 0.3s;
+}
+button:hover {
+  color: #00f800;
+  border-color: #00f800;
+  background-color: transparent;
+}
+
